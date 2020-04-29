@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div id="app" class="container">
+            <h4>{{title}}</h6>
+            <div class="add-item-input">
+                <input type="text" v-model="newItem" v-on:keyup.enter="addItem">
+                <button type="button" v-on:click="addItem">Add!</button>
+            </div>    
+            <ul>
+                <li v-for="item in items">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" v-model="item.checked">
+                            {{ item.text }}
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            <div class="footer">
+                <input type="text" v-model="title">
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    title: "Shopping List",
+                    items: [{text: "Oil", checked: true}, {text: "asddsdas", checked: false}],
+                    newItem: '',
+                },
+                methods: {
+                    addItem: function(){
+                        let new_item = this.newItem.trim();
+                        if (new_item) { 
+                            this.items.push({text: new_item, checked: false});
+                        }
+                        this.newItem = "";
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
